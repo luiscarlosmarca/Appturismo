@@ -19,6 +19,22 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+		<style> 
+            @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Handlee);
+            body {
+                background: url(/images/bg.jpg) no-repeat center top;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+            }
+            .container > header h1,
+            .container > header h2 {
+                color: #fff;
+                text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+            }
+        </style>
+
 </head>
 <body>
 	<nav class="navbar navbar-default">
