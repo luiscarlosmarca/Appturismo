@@ -56,13 +56,13 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
-						<li><a href="inicio-sesión">Iniciar Sesión</a></li>
-						<li><a href="registro">Registrarse</a></li>
+						<li><a href="{{route('login')}}">Iniciar Sesión</a></li>
+						<li><a href="{{route('registro')}}">Registrarse</a></li>
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="cerrar-sesión">Cerrar Sesión</a></li>
+								<li><a href="{{route('cerrar')}}">Cerrar Sesión</a></li>
 							</ul>
 						</li>
 					@endif

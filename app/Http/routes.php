@@ -15,12 +15,26 @@ Route::get('/', function () {
     return view('layout');
 });
 
+Route::get('home',[
+'uses'	=>'HomeController@index',
+'as'	=>'home'
+]);
 
 // Authentication routes...
-Route::get('inicio-sesión', 'Auth\AuthController@getLogin');
-Route::post('inicio-sesión', 'Auth\AuthController@postLogin');
-Route::get('cerrar-sesión', 'Auth\AuthController@getLogout');
+Route::get('ingresar',[
+'uses'	=>'Auth\AuthController@getLogin',
+'as'	=>'login'
+]);
+Route::post('ingresar', 'Auth\AuthController@postLogin');
+
+Route::get('cerrar-sesión', [
+'uses'	=>'Auth\AuthController@getLogout',
+'as'	=>'cerrar'
+]);
 
 // Registration routes...
-Route::get('registro', 'Auth\AuthController@getRegister');
+Route::get('registro',[
+'uses'	=> 'Auth\AuthController@getRegister',
+'as'	=>'registro'
+]);
 Route::post('registro', 'Auth\AuthController@postRegister');

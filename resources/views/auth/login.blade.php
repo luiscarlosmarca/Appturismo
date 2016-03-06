@@ -25,14 +25,14 @@
 						<header>
 							<span class="avatar"><img src="images/avatar.jpg" alt="" /></span>
 							<h1>Turistiando en Pto  Salgar</h1>
-							<p>Secretaria de turismo - Alcaldia municipal</p>
+							<p>Secretaria de turismo - Alcaldia municipal.</p>
 						</header>
 					
 						<hr />
 						<h2>Iniciar sesión</h2>
 						@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							Por favor corrige los siguientes errores:<br><br>
+					<font color="red">Por favor corrige los siguientes errores:<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -40,8 +40,8 @@
 							</ul>
 						</div>
 					@endif
-
-					<form class="form-horizontal" role="form" method="POST" action="inicio-sesión">
+					</font>
+					<form class="form-horizontal" role="form" method="POST" action="{{route('login')}}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">

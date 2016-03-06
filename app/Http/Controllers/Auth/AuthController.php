@@ -61,5 +61,23 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        $user->role='user';
+        $user->save();
+
+        return $user;
+    }
+
+    //corrigue un error de la ruta del login
+
+    public function loginPath()
+    {
+        return route('login');
+    }
+
+    //metodo que corrigue la ruta despues de ingresar el modulo de login
+
+    public function redirectPath()
+    {
+        return route('home');
     }
 }

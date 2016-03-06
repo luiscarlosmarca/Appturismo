@@ -17,7 +17,7 @@ class CreateMessagesTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone')->nullable();
-            $table->string('metter'); //asunto de mensaje select
+            $table->string('matter'); //asunto de mensaje select
             $table->text('message');
             
 

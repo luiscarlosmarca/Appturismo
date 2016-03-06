@@ -19,7 +19,7 @@ class CreateVotesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->integer('hotel_id')->unsigned();
-            $table->foreign('hotel_id')->references('id')->on('hotel')
+            $table->foreign('hotel_id')->references('id')->on('hotels');
 
             $table->timestamps();
         });
