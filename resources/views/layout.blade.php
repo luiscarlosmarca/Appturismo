@@ -30,7 +30,7 @@
             }
             .container > header h1,
             .container > header h2 {
-                color: #fff;
+                color: #337E63;
                 text-shadow: 0 1px 1px rgba(0,0,0,0.5);
             }
         </style>
@@ -52,12 +52,14 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/">Bienvenid@</a></li>
+					<li><a href="/">Hoteles Recientes</a></li>
+					<li><a href="/populares">Hoteles populares</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
 						<li><a href="{{route('login')}}">Iniciar Sesión</a></li>
-						<li><a href="{{route('registro')}}">Registrarse</a></li>
+						<li><a href="{{route('registro')}}">Crear Cuenta</a></li>
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>

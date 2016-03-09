@@ -73,9 +73,11 @@
 						<hr />
 						-->
 						<footer>
+							<div class="alert alert-info" role="alert">
 							<ul class="icons">
 								<li><a href="/" class="fa-home"> Volver al inicio </a></li>
-							
+								<li><a href="{{route('registro')}}" class="fa-user"> Crear Cuenta</a></li>
+							</div>
 							</ul>
 						</footer>
 					</section>

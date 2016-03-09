@@ -10,10 +10,22 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//Rutas para mostrar hoteles en el index publico
+Route::get('/',[
+'uses'	=>'HotelsController@index',
+'as'	=>'hoteles'
+]);
 
-Route::get('/', function () {
-    return view('layout');
-});
+Route::get('/populares',[
+'uses'	=>'HotelsController@popular',
+'as'	=>'hoteles.populares'
+]);
+
+//Cuando habran algun hotel detalles de este.
+Route::get('/hotel/{id}',[
+'uses'	=>'HotelsController@details',
+'as'	=>'hotel.detail'
+]);
 
 Route::get('home',[
 'uses'	=>'HomeController@index',
@@ -33,7 +45,7 @@ Route::get('cerrar-sesión', [
 ]);
 
 // Registration routes...
-Route::get('registro',[
+Route::get('crear-cuenta',[
 'uses'	=> 'Auth\AuthController@getRegister',
 'as'	=>'registro'
 ]);
