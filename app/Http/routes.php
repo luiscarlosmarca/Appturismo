@@ -49,4 +49,4 @@ Route::get('crear-cuenta',[
 'uses'	=> 'Auth\AuthController@getRegister',
 'as'	=>'registro'
 ]);
-Route::post('registro', 'Auth\AuthController@postRegister');
+Route::post('crear-cuenta', 'Auth\AuthController@postRegister');

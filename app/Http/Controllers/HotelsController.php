@@ -22,7 +22,10 @@ class HotelsController extends Controller
 
     public function details($id)
     {
-    	dd('details: '. $id);
+    	$hotel=hotel::findOrFail($id);
+        
+
+        return view('hotels/details',compact('hotel'));
     }
 
 }

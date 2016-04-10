@@ -36,4 +36,20 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function hotels()
+    {
+        // un usuario es propietario de muchos hoteles
+        return $this->hasMany('App\hotel');
+    }
+
+    public function voted()
+    {
+        //un usuario ha votado por muchos hoteles
+        return $this->belongsToMany('App\hotel','hotel_user');
+
+         
+    }
+
+    
 }
