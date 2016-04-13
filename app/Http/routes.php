@@ -50,3 +50,28 @@ Route::get('crear-cuenta',[
 'as'	=>'registro'
 ]);
 Route::post('crear-cuenta', 'Auth\AuthController@postRegister');
+
+//Rutas para el modulo administrativo de hoteles
+Route::group(['middleware'=>'auth'], function(){
+
+	Route::get('/crear-hotel',[
+		'uses'	=>'HotelsController@create',
+		'as'	=>'hotels.create'
+	]);
+
+	Route::post('/crear-hotel',[
+		'uses'=>'HotelsController@store',
+		'as'  =>'hotels.store'
+		]);
+
+	Route::get('/crear-habitacion',[
+		'uses'	=>'HotelsController@create_room',
+		'as'	=>'hotels.createroom'
+	]);
+
+	Route::post('/crear-habitacion',[
+		'uses'=>'HotelsController@store',
+		'as'  =>'hotels.store_room'
+		]);
+ 
+});

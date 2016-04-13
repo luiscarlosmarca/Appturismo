@@ -8,7 +8,7 @@ class room extends Model
 {
    public function hotel()
 	{
-	//un comentario esta asociado a un unico hotel
+	//habitaciones esta asociado a un unico hotel
 		return $this->belongTo('App\hotel');
 	}
     
