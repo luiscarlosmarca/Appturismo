@@ -17,6 +17,8 @@ class CreateRoomsTable extends Migration
             $table->string('type');//de pareja, dos camas, sencilla
             $table->integer('numPerson');
             $table->integer('numBed');
+
+            $table->integer('cantidad');//cantidad de habitaciones
             $table->integer('price');
             $table->text('extra');//check list para agregar 
             $table->string('image')->nullable();

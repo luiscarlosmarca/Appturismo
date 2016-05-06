@@ -7,6 +7,28 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h1>Hotel: {{$hotel->name}}</h1> </div>
 				<div class="panel-body">
+
+					<a href="{{route('hotels.createroom',$hotel->id)}}"class="btn btn-primary">
+						Crear una Habitación
+						
+					</a>
+	
+		
+					<a href="{{route('hotels.create_message',$hotel->id)}}"class="btn btn-primary">
+						Enviar un mensaje
+					</a>
+
+			<!-- 		<a href="{{route('hotels.ver_message',$hotel->id)}}"class="btn btn-primary">
+						ver un mensajes
+					</a> -->
+				</div>
+
+					@if (Session::has('message'))
+
+					<p class="alert alert-info"> {{Session::get('message') }}</p>
+
+					@endif
+					
 				<div class="jumbotron">
 		  
 		   
@@ -15,7 +37,7 @@
 						<div class="col-md-8">
 							<span class="label label-default">Detalles</span>
 							  <h3>{{$hotel->details}}</h3>
-							  <span class="label label-success">Direccion:</span>
+							  <span class="label label-success">Dirección:</span>
 							  <p>{{$hotel->address}}<br></p>
 							   <span class="label label-success">Telefono:</span>
 							  <p>{{$hotel->phone}}<br></p>
@@ -26,7 +48,7 @@
 						</div>
 							
 							<div class="col-md-4">
-							  	<a href="/upload/{{$hotel->image}}.jgp" target="black"><img src="/upload/{{$hotel->image}}.jpg" height="380" width="200"></a>
+							  	<a href="/upload/{{$hotel->image}}" target="black"><img src="/upload/{{$hotel->image}}" height="380" width="200"></a>
 							</div>
 						</div>
 
@@ -35,7 +57,7 @@
 
 					 <div class="panel-heading">
 
-					 	<h3 class="panel-title">Habitaciones: ({{count($hotel->rooms)}})</h3> 
+					 	<h3 class="panel-title">Habitaciones</h3> 
 
 					 </div> 
 
@@ -43,15 +65,15 @@
 					 		@foreach($hotel->rooms as $room)
 		
 							<div>
-							
+								<p> Cantidad de habitaciones:<strong> {{$room->cantidad}}</strong></p>
 								<p> Tipo:<strong> {{$room->type}}</strong></p>
 								<p> Capacidad para:<strong> {{$room->numPerson}}</strong> personas</p>
 								<p> Numero de camas:<strong> {{$room->numBed}}</strong></p>
 								<p> Extras:<strong> {{$room->extra}}</strong></p>
-								<p> Precio: {{$room->price}}</p>
+								<p> Precio: ${{$room->price}}</p>
 								
 
-								<img src="/upload/room/{{$room->image}}.jpg" align="center">
+								<img src="/upload/room/{{$room->image}}" align="center">
 								<hr>
 							</div>
 							@endforeach
@@ -59,10 +81,17 @@
 					 </div> 
 				 </div>
 				
-<br> <br>
-				<textarea class="form-control" rows="3"></textarea>
+				<br> <br>
+				{!!Form::open(['route'=>'hotels.store_comment','method'=>'POST'])!!}
+				
+				{!! Form::label('comment','Comentario')!!}
+				{!! Form::textarea('comment',null,['class'=>'form-control','placeholder'=>'Escriba su opinion sobre este Hotel'])!!}
+
+				{!! Form::hidden('hotel_id',$hotel->id)!!}
+
 				<br>
-				<button type="button" class="btn btn-primary">Enviar comentario</button>
+				<button type="submit" class="btn btn-primary">Enviar comentario</button>
+				{!! Form::close() !!}
 			</div>
 
 
@@ -73,6 +102,7 @@
 				  <li role="presentation"><a href="#"> Comentarios<span class="badge">({{count($hotel->comments)}})</span></a></li>
 
 				</ul>
+			
 			<p>
 
 				@foreach($hotel->users as $user)

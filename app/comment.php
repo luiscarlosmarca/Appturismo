@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class comment extends Model
 {
+	protected $fillable = ['name','user_id','hotel_id','comment'];
 
 	public function hotel()
 	{

@@ -1,8 +1,4 @@
 
-
-  
-
-
 <div class="jumbotron">
 		  
 		  
@@ -28,20 +24,20 @@
 		</div>
 		
 		<div class="col-md-4">
-		  	<a href="/upload/{{$hotel->image}}.jgp" target="black"><img src="/upload/{{$hotel->image}}.jpg" height="380" width="200"></a>
+		  	<a href="/upload/{{$hotel->image}}" target="black"><img src="/upload/{{$hotel->image}}" height="380" width="200"></a>
 		</div>
 	</div>
 
 	<ul class="nav nav-pills" role="tablist">
 
-				  <li role="presentation" class="active"><a href="#">Votos <span class="badge">({{count($hotel->users)}})</span></a></li>
+				  <li role="presentation" class="active">Votos <span class="badge">({{count($hotel->users)}})</span></a></li>
 				 
-				  <li role="presentation"><a href="#"> Comentarios<span class="badge">({{count($hotel->comments)}})</span></a></li>
+				  <li role="presentation">Comentarios<span class="badge">({{count($hotel->comments)}})</span></a></li>
 
 				   <li role="presentation"><a href="#">   <span class="label label-primary">Habitaciones	({{count($hotel->rooms)}})</span></li>
 			
 
 	</ul>
-
+	</ul>
 </div>
 

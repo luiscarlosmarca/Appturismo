@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder
         
         factory(App\message::class,10)->create();
         
-        factory(App\vote::class,10)->create();
+        factory(App\hotel_user::class,10)->create();
 
         factory(App\comment::class,10)->create();
 

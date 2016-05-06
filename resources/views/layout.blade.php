@@ -54,6 +54,7 @@
 					<li><a href="/">Bienvenid@</a></li>
 					<li><a href="/">Hoteles Recientes</a></li>
 					<li><a href="/populares">Hoteles populares</a></li>
+					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

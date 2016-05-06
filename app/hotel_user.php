@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class vote extends Model
+class hotel_user extends Model
 {
    public function hotel()
 	{

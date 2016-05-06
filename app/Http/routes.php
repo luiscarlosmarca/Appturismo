@@ -64,14 +64,38 @@ Route::group(['middleware'=>'auth'], function(){
 		'as'  =>'hotels.store'
 		]);
 
-	Route::get('/crear-habitacion',[
+	Route::get('/crear-habitacion/{id}',[
 		'uses'	=>'HotelsController@create_room',
 		'as'	=>'hotels.createroom'
 	]);
 
 	Route::post('/crear-habitacion',[
-		'uses'=>'HotelsController@store',
+		'uses'=>'HotelsController@store_room',
 		'as'  =>'hotels.store_room'
 		]);
  
 });
+
+
+//Rutas para el envio de mensaje
+Route::get('/enviar-mensaje/{id}',[
+		'uses'	=>'HotelsController@create_message',
+		'as'	=>'hotels.create_message'
+]);
+
+Route::post('/enviar-mensaje',[
+		'uses'=>'HotelsController@store_message',
+		'as'  =>'hotels.store_message'
+]);
+
+Route::get('/ver-mensaje/{id}',[
+'uses'	=>'HotelsController@verMensajes',
+'as'	=>'hotels.ver_message'
+]);
+
+
+//Rutas para comentarios
+Route::post('/comentar-hotel',[
+		'uses'=>'HotelsController@store_comment',
+		'as'  =>'hotels.store_comment'
+]);

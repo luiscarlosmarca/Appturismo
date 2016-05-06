@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'rooms',
             'messages',
             'comments',
-            'votes'
+            'hotel_users'
 
             );
 
