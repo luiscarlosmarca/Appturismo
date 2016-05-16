@@ -56,7 +56,7 @@ class hotel extends Model
       return hotel::name($name)
         
         
-        ->orderBy('created_at','ASC')
+        ->orderBy('created_at','DESC')
         ->paginate(5);
   }
 }

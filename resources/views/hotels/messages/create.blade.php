@@ -29,7 +29,7 @@
 									{!! Form::email('email',null,['class'=>'form-control','placeholder'=>'Escriba su correo electronico'])!!}
 
 									{!! Form::label('matter','Asunto')!!}
-										{!! Form::select('matter', array('Reservar' => 'Reservar', 'Sugerencia' => 'Sugerencia','Queja' => 'Queja','Otros' =>'Otro'))!!}
+									{!! Form::select('matter', array('Reservar' => 'Reservar', 'Sugerencia' => 'Sugerencia','Queja' => 'Queja','Otros' =>'Otro'))!!}
 										<br>
 									{!! Form::label('message','Mensaje')!!}
 									{!! Form::textarea('message',null,['class'=>'form-control','placeholder'=>'Escriba el mensaje para el hotel'])!!}

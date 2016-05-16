@@ -13,14 +13,17 @@
 						
 					</a>
 	
-		
-					<a href="{{route('hotels.create_message',$hotel->id)}}"class="btn btn-primary">
+					<a href="{{route('hotels.edit',$hotel->id)}}"class="btn btn-primary">
+						Editar Hotel
+					</a>
+
+					<a href="{{route('hotels.create_message',$hotel->id)}}"class="btn btn-success">
 						Enviar un mensaje
 					</a>
 
-			<!-- 		<a href="{{route('hotels.ver_message',$hotel->id)}}"class="btn btn-primary">
+		{{--	<!-- 		<a href="{{route('hotels.ver_message',$hotel->id)}}"class="btn btn-primary">
 						ver un mensajes
-					</a> -->
+					</a> -->--}}
 				</div>
 
 					@if (Session::has('message'))
@@ -71,7 +74,9 @@
 								<p> Numero de camas:<strong> {{$room->numBed}}</strong></p>
 								<p> Extras:<strong> {{$room->extra}}</strong></p>
 								<p> Precio: ${{$room->price}}</p>
-								
+								<a href="{{route('hotels.editroom',$hotel->id)}}"class="btn btn-primary">
+								Editar Habitación
+								</a>
 
 								<img src="/upload/room/{{$room->image}}" align="center">
 								<hr>

@@ -14,7 +14,7 @@ use Auth;
 use Illuminate\Support\Facades\Session;
 class HotelsController extends Controller
 {
-
+//********* gestion de hoteles
 public function index(Request $request)
     {
         $hotels=hotel::filtro($request->get('name'));
@@ -68,6 +68,49 @@ public function create()
         return redirect()->route('hoteles');
     }
 
+public function edit($id)
+    {
+        $hotel=hotel::findOrFail($id);
+        return view('hotels/edit',compact('hotel'));
+    } 
+
+
+public function update(Request $request,$id)
+    {
+          
+        $hotel=hotel::findOrFail($id);
+           if(Input::hasFile('image'))
+        {
+
+            $file = Input::file('image');
+            $image=time().'-'.$file->getClientOriginalName();
+            $file->move('upload',$file->getClientOriginalName(),$image);
+                              
+            $hotels->image=$image;
+                          
+        }
+
+
+       
+        $hotel->fill($request->all());
+        $hotel->save();
+
+        Session::flash('message',$hotel->name.' Se actualizo');
+        return redirect()->route('hoteles');
+
+    } 
+public function destroy($id)
+    {
+        $hotel = hotel::find($id);
+ 
+        $hotel->delete();
+ 
+         Session::flash('message',$hotel->name.'hotel eliminado');
+        return redirect()->route('hoteles');
+    } 
+
+    //**********Gestion de Habitaciones
+
 public function create_room($id)
 
     {
@@ -98,7 +141,17 @@ public function create_room($id)
         return redirect()->back();
    
     }
+public function edit_room($id)
+    {
+        $room=room::findOrFail($id);
+        return view('hotels/rooms/edit',compact('room'));
+    }
 
+public function update_room(Request $request)
+    {
+
+    } 
+//**Gestion de mensajes ***/////
 public function create_message($id)
 
     {
@@ -122,6 +175,7 @@ public function verMensajes($id)
         return view('hotels/messages/list',compact('messages'));
     }
 
+    /****Gestion de Comentarios*/
 public function store_comment(Request $request)
     
     {

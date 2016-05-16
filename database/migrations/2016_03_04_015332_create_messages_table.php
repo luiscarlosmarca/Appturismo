@@ -22,7 +22,7 @@ class CreateMessagesTable extends Migration
             
 
             $table->integer('hotel_id')->unsigned();
-            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

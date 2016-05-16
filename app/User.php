@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
+use App\User;
+use Illuminate\Support\Facades\Session;
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
@@ -50,6 +51,33 @@ class User extends Model implements AuthenticatableContract,
 
          
     }
+
+    public function scopeName($query,$name)
+    {
+  
+    if (trim($name) != "")
+    {
+        $query->where(\DB::raw("CONCAT(name)"),"LIKE","%$name%");
+        Session::flash('message','Nombre:'.' '.$name.'  ' .'Resultado de la busqueda'); 
+     }
+        
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        if ( ! empty($value))
+        {
+            $this->attributes['password']=bcrypt($value);
+        }
+    }
+     public static function filtro($name)
+     {
+          return User::name($name)
+            
+            
+            ->orderBy('created_at','ASC')
+            ->paginate(10);
+     }
 
     
 }

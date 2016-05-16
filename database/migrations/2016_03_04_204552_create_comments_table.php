@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->integer('hotel_id')->unsigned();
-            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });
