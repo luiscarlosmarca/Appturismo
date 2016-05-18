@@ -79,18 +79,7 @@ public function update(Request $request,$id)
     {
           
         $hotel=hotel::findOrFail($id);
-           if(Input::hasFile('image'))
-        {
-
-            $file = Input::file('image');
-            $image=time().'-'.$file->getClientOriginalName();
-            $file->move('upload',$file->getClientOriginalName(),$image);
-                              
-            $hotels->image=$image;
-                          
-        }
-
-
+          
        
         $hotel->fill($request->all());
         $hotel->save();
@@ -105,11 +94,11 @@ public function destroy($id)
  
         $hotel->delete();
  
-         Session::flash('message',$hotel->name.'hotel eliminado');
+        Session::flash('message',$hotel->name.' hotel eliminado');
         return redirect()->route('hoteles');
     } 
 
-    //**********Gestion de Habitaciones
+ /////**********Gestion de Habitaciones
 
 public function create_room($id)
 
@@ -131,14 +120,14 @@ public function create_room($id)
             $rooms->image=$file->getClientOriginalName();
             $rooms->save();
             Session::flash('message'.'Fue creada una habitacion de tipo: ',$rooms->type);
-            return redirect()->back();
+           return redirect()->route('hotel.detail',$rooms->hotel_id);
 
         }
         $rooms= new room($request->all());
        
         $rooms->save();
         Session::flash('message'.'Fue creada una habitacion de tipo: ',$rooms->type);
-        return redirect()->back();
+       return redirect()->route('hotel.detail',$rooms->hotel_id);
    
     }
 public function edit_room($id)
@@ -147,10 +136,29 @@ public function edit_room($id)
         return view('hotels/rooms/edit',compact('room'));
     }
 
-public function update_room(Request $request)
+public function update_room(Request $request, $id)
     {
 
+    $room=room::findOrFail($id);
+    
+    $room->fill($request->all());
+    $room->save();
+
+    Session::flash('message'.'Fue actualizada la habitacion tipo: ',$room->type);
+     return redirect()->route('hotel.detail',$room->hotel_id);
+           
     } 
+
+public function destroy_room($id)
+    {
+        $room = room::find($id);
+ 
+        $room->delete();
+ 
+         Session::flash('message',$room->type.'Habitación eliminada');
+        return redirect()->route('hotel.detail',$room->hotel_id);
+    } 
+
 //**Gestion de mensajes ***/////
 public function create_message($id)
 
@@ -165,11 +173,11 @@ public function create_message($id)
      $messages=new message($request->all());
      $messages->save();
      Session::flash('message'.'El mensaje fue enviado',$messages->namespace);
-     return redirect()->back();
+      return redirect()->route('hotel.detail',$messages->hotel_id);
     }
 
 
-public function verMensajes($id)
+public function verMensajes($id)//fall
     {
         $messages=message::findOrFail($id);
         return view('hotels/messages/list',compact('messages'));

@@ -593,6 +593,7 @@
 		margin: 0 0 1.5em 0;
 	}
 
+
 		dl dt {
 			display: block;
 			margin: 0 0 0.75em 0;
@@ -630,6 +631,14 @@
 		text-decoration: none;
 		white-space: nowrap;
 	}
+	.btn-primary .badge {
+  color: #008001;
+  background-color: #fff;
+}
+.btn-success {
+  color: #000;
+  background-color: #008001;
+  border-colo
 
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,

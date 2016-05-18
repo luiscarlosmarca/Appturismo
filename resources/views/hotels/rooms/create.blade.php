@@ -4,8 +4,11 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading"><h1>Creando una Habitación del <b>{{$hotel->name}}</b></h1> </div>
+			<div class="panel panel-success">
+			<div class="panel-heading"> 
+				<h3 class="panel-title">Creando una Habitación del hotel: <b>{{$hotel->name}}</b></h3>
+			</div>
+				
 
 					@if (Session::has('message'))
 
@@ -14,24 +17,25 @@
 					@endif
 					
 					
-				<div class="panel-body">
-							{!!Form::open(['route'=>'hotels.store_room','method'=>'POST','enctype'=>'multipart/form-data'])!!}
+					<div class="panel-body">
+								
+								{!!Form::open(['route'=>'hotels.store_room','method'=>'POST','enctype'=>'multipart/form-data'])!!}
 
-										@include('hotels.rooms.partials.fields')
-										{!! Form::hidden('hotel_id',$hotel->id)!!}
+											@include('hotels.rooms.partials.fields')
+											
 
 
 
-									<p>
-											<button type="submit" class="btn btn-primary">
-											Crear habitación
-											</button>
+										<p>
+												<button type="submit" class="btn btn-primary">
+												Crear habitación
+												</button>
 
-									</p>
+										</p>
+								
+								{!! Form::close() !!}
+								
 							
-							{!! Form::close() !!}
-						<a href="{{ URL::previous() }}"  class="btn btn-primary">Ver el {{$hotel->name}} </a>
-					
 
 					</div>
 			</div>

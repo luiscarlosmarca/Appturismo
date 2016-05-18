@@ -7,7 +7,12 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h1>Hotel: {{$hotel->name}}</h1> </div>
 				<div class="panel-body">
+					@if (Session::has('message'))
 
+					<p class="alert alert-info"> {{Session::get('message') }}</p>
+
+					@endif
+			
 					<a href="{{route('hotels.createroom',$hotel->id)}}"class="btn btn-primary">
 						Crear una Habitación
 						
@@ -26,11 +31,7 @@
 					</a> -->--}}
 				</div>
 
-					@if (Session::has('message'))
-
-					<p class="alert alert-info"> {{Session::get('message') }}</p>
-
-					@endif
+				
 					
 				<div class="jumbotron">
 		  
@@ -56,6 +57,8 @@
 						</div>
 
 				</div>
+
+
 				<div class="panel panel-primary">
 
 					 <div class="panel-heading">
@@ -74,16 +77,22 @@
 								<p> Numero de camas:<strong> {{$room->numBed}}</strong></p>
 								<p> Extras:<strong> {{$room->extra}}</strong></p>
 								<p> Precio: ${{$room->price}}</p>
-								<a href="{{route('hotels.editroom',$hotel->id)}}"class="btn btn-primary">
+								
+
+								<img src="/upload/room/{{$room->image}}" align="center" class="img-responsive"	>
+								<hr>
+
+								<a href="{{route('hotels.editroom',$room->id)}}"class="btn btn-primary">
 								Editar Habitación
 								</a>
 
-								<img src="/upload/room/{{$room->image}}" align="center">
-								<hr>
+
 							</div>
 							@endforeach
 
 					 </div> 
+
+
 				 </div>
 				
 				<br> <br>

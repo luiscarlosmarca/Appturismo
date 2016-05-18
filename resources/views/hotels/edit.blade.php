@@ -1,4 +1,4 @@
-@extends('layout')
+z|@extends('layout')
 @section('title')
 Editar Hotel
 @stop

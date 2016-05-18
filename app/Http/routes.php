@@ -90,11 +90,11 @@ Route::group(['middleware'=>'auth'], function(){
 	
 	]); 
 
-
 	Route::delete('/eliminar-hotel/{id}',[
 	'uses'	=>'HotelsController@destroy',
-	'as'	=>'hotel.destroy'
+	'as'	=>'hotels.destroy'
 	]);
+
 //****** Habitaciones ***/////
 	Route::get('/crear-habitacion/{id}',[
 		'uses'	=>'HotelsController@create_room',
@@ -111,9 +111,14 @@ Route::group(['middleware'=>'auth'], function(){
 		'as'  =>'hotels.editroom'
 		]);
 	Route::patch('/editar-habitacion/{id}',[
-	'uses'	=>'HomeController@update_room',
+	'uses'	=>'HotelsController@update_room',
 	'as'	=>'hotels.updateroom'
 	]); 
+
+	Route::delete('/eliminar-habitacion/{id}',[
+	'uses'	=>'HotelsController@destroy_room',
+	'as'	=>'hotel.destroyroom'
+	]);
 
 //Rutas para comentarios
 	Route::post('/comentar-hotel',[
