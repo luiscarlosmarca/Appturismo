@@ -11,7 +11,7 @@ Editar Usuario
 				
 				@include('error')
 
-					{!!Form::model($users,['route'=>['update.users',$users],'method' => 'PATCH','enctype'=>'multipart/form-data']12) !!} 
+					{!!Form::model($users,['route'=>['update.users',$users],'method' => 'PATCH','enctype'=>'multipart/form-data']) !!} 
 
 								
 								@include('users.partials.fields')

@@ -23,6 +23,20 @@ class hotel extends Model
    	return $this->hasMany('App\comment');
 
    }
+
+     public function messages()
+   {
+    //Un hotele puede tener muchos mensajes
+    return $this->hasMany('App\message');
+
+   }
+   
+   public function images()
+  //las coleccion de imagenes de cada hotel
+  {
+      return $this->hasMany('App\h_image');
+  }
+
   
   public function rooms()
    {

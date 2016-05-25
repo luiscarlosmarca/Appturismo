@@ -7,6 +7,8 @@ use App\hotel;
 use App\room;
 use App\message;
 use App\comment;
+use App\h_image;
+use App\User;
 use \Input as Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -15,6 +17,13 @@ use Illuminate\Support\Facades\Session;
 class HotelsController extends Controller
 {
 //********* gestion de hoteles
+
+public function miHotel($id)
+    {
+       $user=User::findOrFail($id);
+       return view('hotels/miHotel', compact('user'));
+    }
+
 public function index(Request $request)
     {
         $hotels=hotel::filtro($request->get('name'));
@@ -38,34 +47,28 @@ public function create()
      return view('hotels/create');
     }
 
- public function store(Request $request)
+  public function store(Request $request)
     {
-        if(Input::hasFile('image'))
+        if($request->file('image'))
         {
 
-            $file = Input::file('image');
-            $file->move('upload',$file->getClientOriginalName());
-            $image='img src="/upload/'.$file->getClientOriginalName().'"';
-            $user=Auth::user()->id;
-            $hotels = new hotel($request->all());
-            $hotels->image=$file->getClientOriginalName();
-            $hotels->user_id=$user;
-            $hotels->save();
-       
-      
-                Session::flash('message',$hotels->nombre.' Fue creado');
-            
-                return redirect()->route('hoteles');
+            $file = $request->file('image');
+            $name = 'Appjac_'.time().'.'.$file->getClientOriginalExtension();
+            $path = public_path().'/upload/hotels/';
+            $file->move($path,$name);
         }
-
+            
         $user=Auth::user()->id;
         $hotels = new hotel($request->all());
         $hotels->user_id=$user;
+        $hotels->image=$name;
         $hotels->save();
-             
-        Session::flash('message',$hotels->nombre.' Fue creado');
-                
+        
+      
+      
+        Session::flash('message',$hotels->name.'  Fue creado');
         return redirect()->route('hoteles');
+               
     }
 
 public function edit($id)
@@ -193,5 +196,38 @@ public function store_comment(Request $request)
      $comments->save();
      return redirect()->back();
     }
+
+    /************ Gestion de imagenes */
+    public function upload_image($id)
+
+    {
+     $hotel=hotel::findOrFail($id);
+     return view('hotels/images/upload',compact('hotel'));
+    }
+
+    public function store_image(Request $request)
+    {
+       
+        if($request->file('name'))
+        {
+
+            $file = $request->file('name');
+            $name = 'Appjac_'.time().'.'.$file->getClientOriginalExtension();
+            $path = public_path().'/upload/hotels/images/';
+            $file->move($path,$name);
+        }
+            
+      
+        
+        $image = new h_image($request->all());
+
+        $image->name = $name;
+      
+        $image->save();
+      
+        Session::flash('message',$image->title.' Imagen agregada éxitosamente');
+        return redirect()->back();
+    }
+
 
 }

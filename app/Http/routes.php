@@ -10,6 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+///** Mis hoteles ***///
+
+Route::get('/mihotel/{id}',[
+'uses'	=>'HotelsController@miHotel',
+'as'	=>'miHotel.detail'
+]);
+
 //Rutas para mostrar hoteles en el index publico···##########
 Route::get('/',[
 'uses'	=>'HotelsController@index',
@@ -69,6 +76,7 @@ Route::post('/enviar-mensaje',[
 //Rutas para el modulo administrativo de hoteles##########################
 Route::group(['middleware'=>'auth'], function(){
 
+///**** hoteles
 	Route::get('/crear-hotel',[
 		'uses'	=>'HotelsController@create',
 		'as'	=>'hotels.create'
@@ -125,6 +133,19 @@ Route::group(['middleware'=>'auth'], function(){
 		'uses'=>'HotelsController@store_comment',
 		'as'  =>'hotels.store_comment'
 	]);
+
+// imagenes
+	Route::post('/subir-imagenes',[
+		'uses'=>'HotelsController@store_image',
+		'as'  =>'hotels.store_images'
+		]);
+
+	Route::get('/subir-imagenes/{id}',[
+		'uses'	=>'HotelsController@upload_image',
+		'as'	=>'hotels.upload_images'
+	]);
+
+///****************
 //Para gestion de usuarios
 	Route::get('listado-usuarios/', [
 	'uses'	=>'HomeController@listUsers',

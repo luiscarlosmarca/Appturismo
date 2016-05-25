@@ -1,5 +1,8 @@
 @extends('layout')
 
+@section('css')
+<link rel="stylesheet" type="text/css" media="all" href="/style/css/animate.css">
+@endsection
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -26,6 +29,10 @@
 						Enviar un mensaje
 					</a>
 
+					<a href="{{route('hotels.upload_images',$hotel->id)}}"class="btn btn-success">
+						Subir galeria de imagenes
+					</a>
+
 		{{--	<!-- 		<a href="{{route('hotels.ver_message',$hotel->id)}}"class="btn btn-primary">
 						ver un mensajes
 					</a> -->--}}
@@ -38,9 +45,9 @@
 		   
 					<div class="row">
 						
-						<div class="col-md-8">
+						
 							<span class="label label-default">Detalles</span>
-							  <h3>{{$hotel->details}}</h3>
+							  <h3>{!!$hotel->details!!}</h3>
 							  <span class="label label-success">Dirección:</span>
 							  <p>{{$hotel->address}}<br></p>
 							   <span class="label label-success">Telefono:</span>
@@ -49,15 +56,30 @@
 							  <p>{{$hotel->email}}<br></p>
 							   <span class="label label-success">Sitio web:</span>
 							  <p>{{$hotel->website}}<br></p>
-						</div>
-							
-							<div class="col-md-4">
-							  	<a href="/upload/{{$hotel->image}}" target="black"><img src="/upload/{{$hotel->image}}" height="380" width="200"></a>
-							</div>
-						</div>
+					
+														
+					</div>
 
 				</div>
 
+				<div class="row">
+				@foreach($hotel->images as $image)
+					<div class="col-md-6">
+						
+							<div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">   <center>{{$image->title}}   </center></h3>
+							  </div>
+							  <div class="panel-body">
+							   <center> <img src="/upload/hotels/images/{{$image->name}}" class="img-responsive"></center>
+							  </div>
+							</div>
+					</div>
+				@endforeach
+
+
+
+				</div>
 
 				<div class="panel panel-primary">
 
@@ -67,8 +89,11 @@
 
 					 </div> 
 
-					 <div class="panel-body"> 
-					 		@foreach($hotel->rooms as $room)
+					<div class="row">
+								 @foreach($hotel->rooms as $room)
+									
+									<div class="col-md-6">
+									 <div class="panel-body"> 
 		
 							<div>
 								<p> Cantidad de habitaciones:<strong> {{$room->cantidad}}</strong></p>
@@ -88,6 +113,8 @@
 
 
 							</div>
+							 </div> 
+							  </div> 
 							@endforeach
 
 					 </div> 

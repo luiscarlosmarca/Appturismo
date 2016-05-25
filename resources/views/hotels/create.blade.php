@@ -15,6 +15,9 @@
 						{!!Form::open(['route'=>'hotels.create','method'=>'POST','enctype'=>'multipart/form-data'])!!}
 
 									@include('hotels.partials.fields')
+									{!! Form::label('file','Foto de portad del hotel')!!}
+									{!! Form::file('image',null,['class'=>'form-control'])!!}
+									<p class="help-block">Imagenes 2kb .jpg y .png. Tamaños Altura 380 px  X Ancho 200 px</p>
 
 								<p>
 									<button type="submit" class="btn btn-primary">
@@ -29,4 +32,11 @@
 		</div>
 	</div>
 </div>
+@endsection
+@section('scripts')
+
+	<script>
+		$('.textarea-content').trumbowyg();
+
+	</script>
 @endsection

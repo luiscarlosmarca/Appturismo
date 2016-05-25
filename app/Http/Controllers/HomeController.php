@@ -27,6 +27,7 @@ class HomeController extends Controller
 
     public function editUsers($id)
     {
+        
     	$users=User::findOrFail($id);
 
     	return view('users.edit',compact('users'));

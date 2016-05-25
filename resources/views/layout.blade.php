@@ -10,7 +10,8 @@
    
     {!! Html::style('css/app.css') !!}
     {!! Html::style('plugins/chosen/chosen.css') !!}
-
+    {!! Html::style('plugins/trumbowyg/ui/trumbowyg.css') !!}
+	@yield('css')
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -22,20 +23,7 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-		<style> 
-            @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Handlee);
-            body {
-                background: url(/images/bg.jpg) no-repeat center top;
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                background-size: cover;
-            }
-            .container > header h1,
-            .container > header h2 {
-                color: #337E63;
-                text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-            }
-        </style>
+		
 
 </head>
 <body>
@@ -55,8 +43,14 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/">Bienvenid@</a></li>
 					<li><a href="/">Hoteles Recientes</a></li>
+
 					<li><a href="/populares">Hoteles populares</a></li>
-					
+					<li><a href="{{route('miHotel.detail',Auth::user()->id)}}">Mi hotel</a></li>
+
+
+
+				
+
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -86,6 +80,9 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	<script src="{{asset('plugins/chosen/chosen.jquery.js')}}"></script>
+
+	<script src="{{ asset('plugins/trumbowyg/trumbowyg.js') }}"></script>
+	
 	@yield('scripts')
 </body>
 </html>

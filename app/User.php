@@ -63,14 +63,7 @@ class User extends Model implements AuthenticatableContract,
         
     }
 
-    public function setPasswordAttribute($value)
-    {
-        if ( ! empty($value))
-        {
-            $this->attributes['password']=bcrypt($value);
-        }
-    }
-     public static function filtro($name)
+        public static function filtro($name)
      {
           return User::name($name)
             

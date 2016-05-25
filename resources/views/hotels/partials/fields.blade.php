@@ -19,12 +19,16 @@
 					{!! Form::label('website','Sitio Web')!!}
 					{!! Form::text('website',null,['class'=>'form-control','placeholder'=>'Escriba  el sitio web del hotel'])!!}
 
-					{!! Form::label('file','Foto del hotel')!!}
-					{!! Form::file('image',null,['class'=>'form-control'])!!}
-					<p class="help-block">Imagenes 2kb .jpg y .png.</p>
+					
 
 					{!! Form::label('details','Detalles')!!}
-					{!! Form::textarea('details',null,['class'=>'form-control','placeholder'=>'Escriba detalles del hotel'])!!}
-
+{!! Form::textarea('details',null,['class'=>'form-control textarea-content','placeholder'=>'Escriba detalles del hotel'])!!}
 
 				</div>
+
+				@section('scripts')
+	<script>
+		$('.textarea-content').trumbowyg();
+
+	</script>
+@endsection

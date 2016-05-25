@@ -24,7 +24,7 @@
 		</div>
 		
 		<div class="col-md-4">
-		  	<a href="/upload/{{$hotel->image}}" target="black"><img src="/upload/{{$hotel->image}}" height="380" width="200"></a>
+		  	<a href="/upload/hotels/{{$hotel->image}}" target="black"><img src="/upload/hotels/{{$hotel->image}}" height="380" width="200"></a>
 		</div>
 	</div>
 
