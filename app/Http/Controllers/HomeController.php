@@ -7,8 +7,9 @@ use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-
+use App\Http\Controllers\Auth;
 use App\Http\Requests\EditUserRequest;
+use App\hotel;
 class HomeController extends Controller
 {
     public function index()
@@ -46,6 +47,24 @@ class HomeController extends Controller
 
     
     	return redirect('listado-usuarios');
+    }
+
+    public function storeVote($id)
+    {
+        $hotel= hotel::findOrFail($id);
+        
+        $user=auth()->user();
+        $user->vote($hotel);
+        return redirect()->back();
+       
+    }
+
+    public function destroyVote($id)
+    {
+        $hotel= hotel::findOrFail($id);
+        $user=auth()->user();
+        $user->unvote($hotel);
+        return redirect()->back();
     }
 }
 

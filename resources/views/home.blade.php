@@ -8,10 +8,12 @@
 				<div class="panel-heading">Has iniciado sesion</div>
 				<div class="panel-body">
 				Welcome to turistiando 1.0
-
-				
-				<a class="btn btn-primary btn-lg" href="{{route('miHotel.detail',Auth::user()->id)}}" role="button">Ver mi Hotel</a>
-				
+				<p>
+				<a  class="btn btn-primary btn-lg"  href="{{route('hotels.create')}}"class="btn btn-primary">
+						Crear mi Hotel
+					</a>
+				<a class="btn btn-primary btn-lg" href="{{route('miHotel.detail',Auth::user()->id)}}" role="button">Ver mis Hoteles</a>
+				</p>
 			</div>
 		</div>
 	</div>

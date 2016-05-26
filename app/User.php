@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use App\User;
+use App\hotel;
 use Illuminate\Support\Facades\Session;
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -47,9 +48,8 @@ class User extends Model implements AuthenticatableContract,
     public function voted()
     {
         //un usuario ha votado por muchos hoteles
-        return $this->belongsToMany('App\hotel','hotel_user');
+        return $this->belongsToMany('App\hotel','hotel_users')->withTimestamps();
 
-         
     }
 
     public function scopeName($query,$name)
@@ -63,7 +63,24 @@ class User extends Model implements AuthenticatableContract,
         
     }
 
-        public static function filtro($name)
+    public function hasVote(hotel $hotel)//para saber si el usuario ya voto por el hotel
+    {
+        return $this->voted()->where('hotel_id', $hotel->id)->count();
+    }
+    
+    public function vote(hotel $hotel)//para que el usuario vote
+    {
+        if($this->hasVote($hotel)) return false;// si el usuario ya voto, false
+        $this->voted()->attach($hotel);
+        return true;
+
+    }
+    public function unvote(hotel $hotel)
+    {
+        $this->voted()->detach($hotel);
+    }
+
+    public static function filtro($name)
      {
           return User::name($name)
             

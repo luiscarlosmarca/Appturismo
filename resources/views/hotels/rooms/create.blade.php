@@ -8,7 +8,7 @@
 			<div class="panel-heading"> 
 				<h3 class="panel-title">Creando una Habitación del hotel: <b>{{$hotel->name}}</b></h3>
 			</div>
-				
+					@include('error')
 
 					@if (Session::has('message'))
 

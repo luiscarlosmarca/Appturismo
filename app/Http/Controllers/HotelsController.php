@@ -13,6 +13,11 @@ use \Input as Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Http\Requests\CreateHotelRequest;
+use App\Http\Requests\CreateImageRequest;
+use App\Http\Requests\EditHotelRequest;
+use App\Http\Requests\CreateRoomRequest;
+use App\Http\Requests\EditRoomRequest;
 use Illuminate\Support\Facades\Session;
 class HotelsController extends Controller
 {
@@ -47,7 +52,7 @@ public function create()
      return view('hotels/create');
     }
 
-  public function store(Request $request)
+  public function store(CreateHotelRequest $request)
     {
         if($request->file('image'))
         {
@@ -78,7 +83,7 @@ public function edit($id)
     } 
 
 
-public function update(Request $request,$id)
+public function update(EditHotelRequest $request,$id)
     {
           
         $hotel=hotel::findOrFail($id);
@@ -111,7 +116,7 @@ public function create_room($id)
      return view('hotels/rooms/create',compact('hotel'));
     }
 
- public function store_room(Request $request)
+public function store_room(CreateRoomRequest $request)
     {
 
       if(Input::hasFile('image'))
@@ -139,7 +144,7 @@ public function edit_room($id)
         return view('hotels/rooms/edit',compact('room'));
     }
 
-public function update_room(Request $request, $id)
+public function update_room(EditRoomRequest $request, $id)
     {
 
     $room=room::findOrFail($id);
@@ -182,8 +187,8 @@ public function create_message($id)
 
 public function verMensajes($id)//fall
     {
-        $messages=message::findOrFail($id);
-        return view('hotels/messages/list',compact('messages'));
+        $hotels=hotel::findOrFail($id);
+        return view('hotels/messages/list',compact('hotels'));
     }
 
     /****Gestion de Comentarios*/
@@ -205,7 +210,7 @@ public function store_comment(Request $request)
      return view('hotels/images/upload',compact('hotel'));
     }
 
-    public function store_image(Request $request)
+    public function store_image(CreateImageRequest $request)
     {
        
         if($request->file('name'))

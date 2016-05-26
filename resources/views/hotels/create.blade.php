@@ -7,6 +7,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h1>Creando un Nuevo hotel</h1> </div>
 				<div class="panel-body">
+					@include('error')
 					@if (Session::has('message'))
 
 					<p class="alert alert-info"> {{Session::get('message') }}</p>
@@ -19,12 +20,12 @@
 									{!! Form::file('image',null,['class'=>'form-control'])!!}
 									<p class="help-block">Imagenes 2kb .jpg y .png. Tamaños Altura 380 px  X Ancho 200 px</p>
 
-								<p>
-									<button type="submit" class="btn btn-primary">
-										Crear hotel
-									</button>
+									<p>
+										<button type="submit" class="btn btn-primary">
+											Crear hotel
+										</button>
 
-								</p>
+									</p>
 						{!! Form::close() !!}
 
 				</div>

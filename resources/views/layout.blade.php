@@ -41,11 +41,11 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/">Bienvenid@</a></li>
+					<li><a href="/home">Bienvenid@</a></li>
 					<li><a href="/">Hoteles Recientes</a></li>
 
 					<li><a href="/populares">Hoteles populares</a></li>
-					<li><a href="{{route('miHotel.detail',Auth::user()->id)}}">Mi hotel</a></li>
+					{{--<li><a href="{{route('miHotel.detail',Auth::user()->id)}}">Mi hotel</a></li>--}}
 
 
 

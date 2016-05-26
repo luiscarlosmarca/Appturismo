@@ -72,9 +72,24 @@ Route::post('/enviar-mensaje',[
 		'as'  =>'hotels.store_message'
 ]);
 
+Route::get('/ver-mensaje/{id}',[
+		'uses'	=>'HotelsController@verMensajes',
+		'as'	=>'hotels.ver_message'
+]);
+
 
 //Rutas para el modulo administrativo de hoteles##########################
 Route::group(['middleware'=>'auth'], function(){
+///*** votes///***
+	Route::post('/votar/{id}',[
+		'uses'=>'HomeController@storeVote',
+		'as'  =>'votes.store'
+	]);
+
+	Route::delete('/quitar-voto/{id}',[
+	'uses'	=>'HomeController@destroyVote',
+	'as'	=>'votes.destroy'
+	]);
 
 ///**** hoteles
 	Route::get('/crear-hotel',[

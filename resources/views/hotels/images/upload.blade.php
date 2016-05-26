@@ -7,6 +7,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"><h1>Subir Imagenes para el hotel: {{$hotel->name}}</h1> </div>
 				<div class="panel-body">
+					@include('error')
 					@if (Session::has('message'))
 
 					<p class="alert alert-info"> {{Session::get('message') }}</p>
@@ -18,7 +19,7 @@
 							{!! Form::text('title',null,['class'=>'form-control','placeholder'=>'Describa el espacio de la imagen'])!!}
 
 
-							{!! Form::label('name','Foto de portad del hotel')!!}
+							{!! Form::label('name','Foto del hotel')!!}
 							{!! Form::file('name',null,['class'=>'form-control'])!!}
 							<p class="help-block">Imagenes 2kb .jpg y .png. Tamaños Altura 380 px  X Ancho 200 px</p>
 

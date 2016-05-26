@@ -33,9 +33,9 @@
 						Subir galeria de imagenes
 					</a>
 
-		{{--	<!-- 		<a href="{{route('hotels.ver_message',$hotel->id)}}"class="btn btn-primary">
-						ver un mensajes
-					</a> -->--}}
+			<a href="{{route('hotels.ver_message',$hotel->id)}}"class="btn btn-primary">
+						Ver mensajes
+					</a> 
 				</div>
 
 				
@@ -103,7 +103,7 @@
 								<p> Extras:<strong> {{$room->extra}}</strong></p>
 								<p> Precio: ${{$room->price}}</p>
 								
-
+							
 								<img src="/upload/room/{{$room->image}}" align="center" class="img-responsive"	>
 								<hr>
 
@@ -119,14 +119,26 @@
 
 					 </div> 
 
-
 				 </div>
-				
+				 @if(! auth()->user()->hasVote($hotel))
+
+				{!! Form::open(['route'=>['votes.store',$hotel->id],'method'=>'POST'])!!}
+									<button type="submit" class="btn btn-primary">
+										<span class="glyphicon glyphicon-thumbs-up"></span> Votar
+									</button>
+				{!!Form::close()!!}
+				@else
+				{!! Form::open(['route'=>['votes.destroy',$hotel->id],'method'=>'DELETE'])!!}
+									<button type="submit" class="btn btn-danger">
+										<span class="glyphicon glyphicon-thumbs-down"></span> Quitar Voto
+									</button>
+				{!!Form::close()!!}
+				@endif
 				<br> <br>
 				{!!Form::open(['route'=>'hotels.store_comment','method'=>'POST'])!!}
 				
 				{!! Form::label('comment','Comentario')!!}
-				{!! Form::textarea('comment',null,['class'=>'form-control','placeholder'=>'Escriba su opinion sobre este Hotel'])!!}
+				{!! Form::textarea('comment',null,['class'=>'form-control textarea-content','placeholder'=>'Escriba su opinion sobre este Hotel'])!!}
 
 				{!! Form::hidden('hotel_id',$hotel->id)!!}
 
@@ -158,7 +170,7 @@
 			<div>
 				<p> <strong>Fecha del comentario:</strong> {{$comment->created_at->format('d/m/Y')}}</p>
 				<p> Usuario:<strong> {{$comment->user->name}}</strong></p>
-				<p>Comentario:<br> {{$comment->comment}}</p>
+				<p>Comentario:<br> {!!$comment->comment!!}</p>
 				<hr>
 			</div>
 			@endforeach
@@ -166,4 +178,12 @@
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+
+	<script>
+		$('.textarea-content').trumbowyg();
+
+	</script>
 @endsection
