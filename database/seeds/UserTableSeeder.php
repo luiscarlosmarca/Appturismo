@@ -21,23 +21,17 @@ class UserTableSeeder extends Seeder
         factory(App\User::class,10)->create();
 
         factory(App\User::class)->create([
-            'name'  =>'luiscarlosmarca',
-            'email' =>'root@app.com.co',
+            'name'  =>'Administrador',
+            'email' =>'admin@turismo.app',
             'role'  =>'admin',
             'password'=>bcrypt('secret')
 
             ]);
 
 
-        factory(App\hotel::class,10)->create();
+        factory(App\hotel::class,1)->create();
         
-        factory(App\room::class,10)->create();
-        
-        factory(App\message::class,10)->create();
-        
-        factory(App\hotel_user::class,10)->create();
-
-        factory(App\comment::class,10)->create();
+       
 
     }
 }

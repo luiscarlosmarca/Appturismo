@@ -5,7 +5,7 @@
 
 		  		<div class="form-group">
 					{!! Form::label('Cantidad','Cantidad de habitaciones')!!}
-					{!! Form::text('cantidad',1)!!}
+					{!! Form::text('cantidad')!!}
 				</div>
 
 				<div class="form-group">

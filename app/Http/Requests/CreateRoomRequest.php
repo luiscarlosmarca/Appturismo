@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Turismo\Http\Requests;
 
-use App\Http\Requests\Request;
+use Turismo\Http\Requests\Request;
 
 class CreateRoomRequest extends Request
 {
@@ -24,7 +24,7 @@ class CreateRoomRequest extends Request
     public function rules()
     {
         return [
-            'price'      => 'required|intenger',
+            'price'      => 'required|integer',
             'image'     => 'required|image'
         ];
     }

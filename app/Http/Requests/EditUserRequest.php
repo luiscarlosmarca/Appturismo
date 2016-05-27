@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Turismo\Http\Requests;
 
-use App\Http\Requests\Request;
+use Turismo\Http\Requests\Request;
 use Illuminate\Routing\Route; 
 
 class EditUserRequest extends Request

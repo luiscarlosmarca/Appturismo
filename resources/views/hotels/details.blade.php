@@ -15,27 +15,33 @@
 					<p class="alert alert-info"> {{Session::get('message') }}</p>
 
 					@endif
-			
-					<a href="{{route('hotels.createroom',$hotel->id)}}"class="btn btn-primary">
-						Crear una Habitación
-						
-					</a>
-	
-					<a href="{{route('hotels.edit',$hotel->id)}}"class="btn btn-primary">
-						Editar Hotel
-					</a>
-
+				@if (Auth::guest())
+					
 					<a href="{{route('hotels.create_message',$hotel->id)}}"class="btn btn-success">
 						Enviar un mensaje
 					</a>
-
-					<a href="{{route('hotels.upload_images',$hotel->id)}}"class="btn btn-success">
+					@elseif (Auth::user()->admin())
+						<a href="{{route('hotels.createroom',$hotel->id)}}"class="btn btn-primary">
+							Crear una Habitación
+						</a>
+		
+						<a href="{{route('hotels.edit',$hotel->id)}}"class="btn btn-primary">
+							Editar Hotel
+						</a>
+						<a href="{{route('hotels.upload_images',$hotel->id)}}"class="btn btn-success">
 						Subir galeria de imagenes
-					</a>
+						</a>
 
-			<a href="{{route('hotels.ver_message',$hotel->id)}}"class="btn btn-primary">
+						<a href="{{route('hotels.ver_message',$hotel->id)}}"class="btn btn-primary">
 						Ver mensajes
-					</a> 
+						</a> 
+				@endif
+				
+						
+				
+					
+
+					
 				</div>
 
 				
@@ -55,7 +61,7 @@
 							   <span class="label label-success">Email:</span>
 							  <p>{{$hotel->email}}<br></p>
 							   <span class="label label-success">Sitio web:</span>
-							  <p>{{$hotel->website}}<br></p>
+							  <p><a href="http://{{$hotel->website}}" target="black">{{$hotel->website}} </a><br></p>
 					
 														
 					</div>
@@ -90,7 +96,7 @@
 					 </div> 
 
 					<div class="row">
-								 @foreach($hotel->rooms as $room)
+						 @foreach($hotel->rooms as $room)
 									
 									<div class="col-md-6">
 									 <div class="panel-body"> 
@@ -106,45 +112,52 @@
 							
 								<img src="/upload/room/{{$room->image}}" align="center" class="img-responsive"	>
 								<hr>
-
+								@if (Auth::guest())
+								@elseif (Auth::user()->admin())
 								<a href="{{route('hotels.editroom',$room->id)}}"class="btn btn-primary">
 								Editar Habitación
 								</a>
+								@endif
+							
 
 
 							</div>
 							 </div> 
 							  </div> 
-							@endforeach
+						@endforeach
 
 					 </div> 
 
 				 </div>
-				 @if(! auth()->user()->hasVote($hotel))
+				 @if (Auth::user())	
+					 @if(! auth()->user()->hasVote($hotel))
 
-				{!! Form::open(['route'=>['votes.store',$hotel->id],'method'=>'POST'])!!}
-									<button type="submit" class="btn btn-primary">
-										<span class="glyphicon glyphicon-thumbs-up"></span> Votar
-									</button>
-				{!!Form::close()!!}
-				@else
-				{!! Form::open(['route'=>['votes.destroy',$hotel->id],'method'=>'DELETE'])!!}
-									<button type="submit" class="btn btn-danger">
-										<span class="glyphicon glyphicon-thumbs-down"></span> Quitar Voto
-									</button>
-				{!!Form::close()!!}
+					{!! Form::open(['route'=>['votes.store',$hotel->id],'method'=>'POST'])!!}
+										<button type="submit" class="btn btn-primary">
+											<span class="glyphicon glyphicon-thumbs-up"></span> Votar
+										</button>
+					{!!Form::close()!!}
+					@else
+					{!! Form::open(['route'=>['votes.destroy',$hotel->id],'method'=>'DELETE'])!!}
+										<button type="submit" class="btn btn-danger">
+											<span class="glyphicon glyphicon-thumbs-down"></span> Quitar Voto
+										</button>
+					{!!Form::close()!!}
+					@endif
 				@endif
 				<br> <br>
-				{!!Form::open(['route'=>'hotels.store_comment','method'=>'POST'])!!}
-				
-				{!! Form::label('comment','Comentario')!!}
-				{!! Form::textarea('comment',null,['class'=>'form-control textarea-content','placeholder'=>'Escriba su opinion sobre este Hotel'])!!}
+				@if (Auth::user())	
+					{!!Form::open(['route'=>'hotels.store_comment','method'=>'POST'])!!}
+					
+					{!! Form::label('comment','Comentario')!!}
+					{!! Form::textarea('comment',null,['class'=>'form-control textarea-content','placeholder'=>'Escriba su opinion sobre este Hotel'])!!}
 
-				{!! Form::hidden('hotel_id',$hotel->id)!!}
+					{!! Form::hidden('hotel_id',$hotel->id)!!}
 
-				<br>
-				<button type="submit" class="btn btn-primary">Enviar comentario</button>
-				{!! Form::close() !!}
+					<br>
+					<button type="submit" class="btn btn-primary">Enviar comentario</button>
+					{!! Form::close() !!}
+				@endif
 			</div>
 
 

@@ -1,14 +1,36 @@
-@extends('layout')
+<!DOCTYPE HTML>
+<!--
+	Identity by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Lo mejores Hoteles | Turistiando en Pto Salgar</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="style/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-loading">
 
-@section('content')
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Login | App web Turismo Hotelero 1.0</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
+				<!-- Main -->
+					<section id="main">
+						<header>
+							<span class="avatar"><img src="images/avatar.jpg" alt="" /></span>
+							<h1>Turistiando en Pto  Salgar</h1>
+							<p>Secretaria de turismo - Alcaldia municipal</p>
+						</header>
+					
+						<hr />
+						<h2>Iniciar sesión</h2>
+						@if (count($errors) > 0)
 						<div class="alert alert-danger">
 							Por favor corrige los siguientes errores:<br><br>
 							<ul>
@@ -23,34 +45,59 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Email</label>
+							<label class="col-md-4 control-label">E-mail:</label>
 							<div class="col-md-6">
 							    {!! Form::text('email', null, ['class' => 'form-control', 'type' => 'email']) !!}
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Contraseña</label>
+							<label class="col-md-4 control-label">Contraseña:</label>
 							<div class="col-md-6">
 						    	{!! Form::password('password', ['class' => 'form-control']) !!}
 							</div>
 						</div>
 
-						
+						<br>
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary" style="margin-right: 15px;">
-									Iniciar seccion
+									Ingresar
 								</button>
 
 								
 							</div>
 						</div>
 					</form>
-				</div>
+						<hr />
+						-->
+						<footer>
+							<ul class="icons">
+								<li><a href="/" class="fa-home"> Volver al inicio </a></li>
+								<li><a href="/crear-cuenta" class="fa-user"> Crear Cuenta</a></li>
+							</ul>
+						</footer>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="copyright">
+							<li>&copy; Secretaria de Turismo </li>
+							<li>Pto Salgar - Cundinamarca </a></li>
+						</ul>
+					</footer>
+
 			</div>
-		</div>
-	</div>
-</div>
-@endsection
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
+
+	</body>
+</html>

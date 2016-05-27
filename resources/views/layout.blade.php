@@ -41,10 +41,10 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/home">Bienvenid@</a></li>
+					
 					<li><a href="/">Hoteles Recientes</a></li>
 
-					<li><a href="/populares">Hoteles populares</a></li>
+					{{--<li><a href="/populares">Hoteles populares</a></li>--}}
 					{{--<li><a href="{{route('miHotel.detail',Auth::user()->id)}}">Mi hotel</a></li>--}}
 
 
@@ -62,9 +62,11 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								
+								@if (Auth::guest())
+									Bienvenido
+								@elseif (Auth::user()->admin())
 								<li><a href="{{route('list.users')}}">Listado de usuarios</a></li>
-
+								@endif
 								<li><a href="{{route('cerrar')}}">Cerrar Sesión</a></li>
 							</ul>
 						</li>

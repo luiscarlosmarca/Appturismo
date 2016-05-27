@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Turismo;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,7 @@ class room extends Model
 	{
 
 	//habitaciones esta asociado a un unico hotel
-		return $this->belongTo('App\hotel');
+		return $this->belongTo('Turismo\hotel');
 	}
     
 }

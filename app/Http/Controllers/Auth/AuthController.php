@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Turismo\Http\Controllers\Auth;
 
-use App\User;
+use Turismo\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Turismo\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -78,6 +78,14 @@ class AuthController extends Controller
 
     public function redirectPath()
     {
-        return route('home');
+        return route('hoteles');
+    }
+
+    protected function getCredentials($request)
+    {
+        return[
+        'email' =>$request->get('email'),
+        'password'  =>$request->get('password')
+        ];
     }
 }

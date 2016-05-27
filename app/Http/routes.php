@@ -72,111 +72,130 @@ Route::post('/enviar-mensaje',[
 		'as'  =>'hotels.store_message'
 ]);
 
-Route::get('/ver-mensaje/{id}',[
-		'uses'	=>'HotelsController@verMensajes',
-		'as'	=>'hotels.ver_message'
-]);
+
 
 
 //Rutas para el modulo administrativo de hoteles##########################
 Route::group(['middleware'=>'auth'], function(){
-///*** votes///***
-	Route::post('/votar/{id}',[
-		'uses'=>'HomeController@storeVote',
-		'as'  =>'votes.store'
-	]);
+		///*** votes///***
+			/////*** Users******////////////
+			Route::post('/votar/{id}',[
+				'uses'=>'HomeController@storeVote',
+				'as'  =>'votes.store'
+			]);
 
-	Route::delete('/quitar-voto/{id}',[
-	'uses'	=>'HomeController@destroyVote',
-	'as'	=>'votes.destroy'
-	]);
+			Route::delete('/quitar-voto/{id}',[
+			'uses'	=>'HomeController@destroyVote',
+			'as'	=>'votes.destroy'
+			]);
 
-///**** hoteles
-	Route::get('/crear-hotel',[
-		'uses'	=>'HotelsController@create',
-		'as'	=>'hotels.create'
-	]);
 
-	Route::post('/crear-hotel',[
-		'uses'=>'HotelsController@store',
-		'as'  =>'hotels.store'
-	]);
+		//Rutas para comentarios
+			Route::post('/comentar-hotel',[
+				'uses'=>'HotelsController@store_comment',
+				'as'  =>'hotels.store_comment'
+			]);
 
-	Route::get('/editar-hotel/{id}',[
-	'uses'	=>'HotelsController@edit',
-	'as'	=>'hotels.edit'
-	]); 
+			//** Hoteleros **//// 
+		Route::group(['middleware'=>'role:hotelero'], function()
+		{
+				///**** hoteles
+					Route::get('/crear-hotel',[
+						'uses'	=>'HotelsController@create',
+						'as'	=>'hotels.create'
+					]);
 
-	Route::patch('/editar-hotel/{id}',[
-	'uses'	=>'HotelsController@update',
-	'as'	=>'hotels.update'
-	
-	]); 
+					Route::post('/crear-hotel',[
+						'uses'=>'HotelsController@store',
+						'as'  =>'hotels.store'
+					]);
 
-	Route::delete('/eliminar-hotel/{id}',[
-	'uses'	=>'HotelsController@destroy',
-	'as'	=>'hotels.destroy'
-	]);
+					Route::get('/editar-hotel/{id}',[
+					'uses'	=>'HotelsController@edit',
+					'as'	=>'hotels.edit'
+					]); 
 
-//****** Habitaciones ***/////
-	Route::get('/crear-habitacion/{id}',[
-		'uses'	=>'HotelsController@create_room',
-		'as'	=>'hotels.createroom'
-	]);
+					Route::patch('/editar-hotel/{id}',[
+					'uses'	=>'HotelsController@update',
+					'as'	=>'hotels.update'
+					
+					]); 
 
-	Route::post('/crear-habitacion',[
-		'uses'=>'HotelsController@store_room',
-		'as'  =>'hotels.store_room'
-		]);
+					Route::delete('/eliminar-hotel/{id}',[
+					'uses'	=>'HotelsController@destroy',
+					'as'	=>'hotels.destroy'
+					]);
 
-	Route::get('/editar-habitacion/{id}',[
-		'uses'=>'HotelsController@edit_room',
-		'as'  =>'hotels.editroom'
-		]);
-	Route::patch('/editar-habitacion/{id}',[
-	'uses'	=>'HotelsController@update_room',
-	'as'	=>'hotels.updateroom'
-	]); 
+				//****** Habitaciones ***/////
+					Route::get('/crear-habitacion/{id}',[
+						'uses'	=>'HotelsController@create_room',
+						'as'	=>'hotels.createroom'
+					]);
 
-	Route::delete('/eliminar-habitacion/{id}',[
-	'uses'	=>'HotelsController@destroy_room',
-	'as'	=>'hotel.destroyroom'
-	]);
+					Route::post('/crear-habitacion',[
+						'uses'=>'HotelsController@store_room',
+						'as'  =>'hotels.store_room'
+						]);
 
-//Rutas para comentarios
-	Route::post('/comentar-hotel',[
-		'uses'=>'HotelsController@store_comment',
-		'as'  =>'hotels.store_comment'
-	]);
+					Route::get('/editar-habitacion/{id}',[
+						'uses'=>'HotelsController@edit_room',
+						'as'  =>'hotels.editroom'
+						]);
+					Route::patch('/editar-habitacion/{id}',[
+					'uses'	=>'HotelsController@update_room',
+					'as'	=>'hotels.updateroom'
+					]); 
 
-// imagenes
-	Route::post('/subir-imagenes',[
-		'uses'=>'HotelsController@store_image',
-		'as'  =>'hotels.store_images'
-		]);
+					Route::delete('/eliminar-habitacion/{id}',[
+					'uses'	=>'HotelsController@destroy_room',
+					'as'	=>'hotel.destroyroom'
+					]);
 
-	Route::get('/subir-imagenes/{id}',[
-		'uses'	=>'HotelsController@upload_image',
-		'as'	=>'hotels.upload_images'
-	]);
 
-///****************
-//Para gestion de usuarios
-	Route::get('listado-usuarios/', [
-	'uses'	=>'HomeController@listUsers',
-	'as'	=>'list.users'
-	]);
+				// imagenes
+					Route::post('/subir-imagenes',[
+						'uses'=>'HotelsController@store_image',
+						'as'  =>'hotels.store_images'
+						]);
 
-	Route::get('/editar-usuario/{id}', [
-	'uses'	=>'HomeController@editUsers',
-	'as'	=>'edit.users'
-	]);
+					Route::get('/subir-imagenes/{id}',[
+						'uses'	=>'HotelsController@upload_image',
+						'as'	=>'hotels.upload_images'
+					]);
 
-	Route::patch('/editar-usuario/{id}',[
-	'uses'	=>'HomeController@updateUsers',
-	'as'	=>'update.users'
-	]); 
-	 
+					Route::get('/ver-mensaje/{id}',[
+						'uses'	=>'HotelsController@verMensajes',
+						'as'	=>'hotels.ver_message'
+					]);
+			});
+		///****************
+			//*** Administradores **////
+		//Para gestion de usuarios
+		Route::group(['middleware'=>'role:admin'], function()
+		{
+			
+				Route::get('listado-usuarios/', [
+				'uses'	=>'HomeController@listUsers',
+				'as'	=>'list.users'
+				]);
+
+				Route::get('/editar-usuario/{id}', [
+				'uses'	=>'HomeController@editUsers',
+				'as'	=>'edit.users'
+				]);
+
+				Route::patch('/editar-usuario/{id}',[
+				'uses'	=>'HomeController@updateUsers',
+				'as'	=>'update.users'
+				]); 
+				 
+				Route::get('/ver-mensaje/{id}',[
+					'uses'	=>'HotelsController@verMensajes',
+					'as'	=>'hotels.ver_message'
+					]);
+		});
+
+
 });
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Turismo;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -9,8 +9,8 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use App\User;
-use App\hotel;
+use Turismo\User;
+use Turismo\hotel;
 use Illuminate\Support\Facades\Session;
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -42,13 +42,13 @@ class User extends Model implements AuthenticatableContract,
     public function hotels()
     {
         // un usuario es propietario de muchos hoteles
-        return $this->hasMany('App\hotel');
+        return $this->hasMany('Turismo\hotel');
     }
 
     public function voted()
     {
         //un usuario ha votado por muchos hoteles
-        return $this->belongsToMany('App\hotel','hotel_users')->withTimestamps();
+        return $this->belongsToMany('Turismo\hotel','hotel_users')->withTimestamps();
 
     }
 
@@ -61,6 +61,14 @@ class User extends Model implements AuthenticatableContract,
         Session::flash('message','Nombre:'.' '.$name.'  ' .'Resultado de la busqueda'); 
      }
         
+    }
+
+      public function setPasswordAttribute($value)
+    {
+        if ( ! empty($value))
+        {
+            $this->attributes['password']=bcrypt($value);
+        }
     }
 
     public function hasVote(hotel $hotel)//para saber si el usuario ya voto por el hotel
@@ -80,6 +88,20 @@ class User extends Model implements AuthenticatableContract,
         $this->voted()->detach($hotel);
     }
 
+    public function admin()
+    {
+        return $this->role ==='admin';
+    }
+
+    public function hotelero()
+    {
+        return $this->role ==='hotelero';
+    }
+
+    public function user()
+    {
+        return $this->role ==='user';
+    }
     public static function filtro($name)
      {
           return User::name($name)

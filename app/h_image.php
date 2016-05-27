@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Turismo;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class h_image extends Model
 
    public function hotel()
    {
-   	return $this->belongsTo('App\hotel');
+   	return $this->belongsTo('Turismo\hotel');
    }
 }

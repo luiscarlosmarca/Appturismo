@@ -34,7 +34,7 @@
 				 
 				  <li role="presentation">Comentarios<span class="badge">({{count($hotel->comments)}})</span></a></li>
 
-				   <li role="presentation"><a href="#">   <span class="label label-primary">Habitaciones	({{count($hotel->rooms)}})</span></li>
+				   <li role="presentation"><a href="#">   <span class="label label-primary">Habitaciones	({{count($hotel->rooms)}})</span></li></a>
 			
 
 	</ul>

@@ -20,7 +20,19 @@
 					{!!Form::password('password_confirmation',['class'=>'form-control','placeholder'=>'Confirme su nueva contraseña'])!!}
 			
 
+			<div class="jumbotron">
+		  
+		   
+					<div class="row">
+						@foreach($users->hotels as $hotel)
+						
+						<span class="label label-default">Hoteles</span>
+							  <h3>	{{$hotel->name}}</h3>
+						@endforeach
 				
 
+				</div>
 
 				</div>
+
+</div>

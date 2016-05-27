@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Turismo\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Turismo\User;
+use Turismo\Http\Requests;
+use Turismo\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\Auth;
-use App\Http\Requests\EditUserRequest;
-use App\hotel;
+use Turismo\Http\Controllers\Auth;
+use Turismo\Http\Requests\EditUserRequest;
+use Turismo\hotel;
 class HomeController extends Controller
 {
     public function index()

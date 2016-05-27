@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Turismo\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

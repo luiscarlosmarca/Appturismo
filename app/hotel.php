@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace Turismo;
 
 use Illuminate\Database\Eloquent\Model;
-use App\hotel;
+use Turismo\hotel;
 use Illuminate\Support\Facades\Session;
 class hotel extends Model
 {
@@ -14,34 +14,34 @@ class hotel extends Model
    public function hotelero()
    {
    	//un hotel es propiedad de un usuario u hotelero
-   	return $this->belongTo('App\User');
+   	return $this->belongTo('Turismo\User');
    }
 
    public function comments()
    {
    	//Un hotele puede ser comentado muchas veces
-   	return $this->hasMany('App\comment');
+   	return $this->hasMany('Turismo\comment');
 
    }
 
      public function messages()
    {
     //Un hotele puede tener muchos mensajes
-    return $this->hasMany('App\message');
+    return $this->hasMany('Turismo\message');
 
    }
    
    public function images()
   //las coleccion de imagenes de cada hotel
   {
-      return $this->hasMany('App\h_image');
+      return $this->hasMany('Turismo\h_image');
   }
 
   
   public function rooms()
    {
    	//Un hotele puede ser comentado muchas veces
-   	return $this->hasMany('App\room');
+   	return $this->hasMany('Turismo\room');
 
    }
   
@@ -49,7 +49,7 @@ class hotel extends Model
    public function users()
    {
 
-   	 	return $this->belongsToMany('\App\User','hotel_users');
+   	 	return $this->belongsToMany('\Turismo\User','hotel_users');
      		 
 	} 
 

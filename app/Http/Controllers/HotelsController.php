@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Turismo\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\hotel;
-use App\room;
-use App\message;
-use App\comment;
-use App\h_image;
-use App\User;
+use Turismo\hotel;
+use Turismo\room;
+use Turismo\message;
+use Turismo\comment;
+use Turismo\h_image;
+use Turismo\User;
 use \Input as Input;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Turismo\Http\Requests;
+use Turismo\Http\Controllers\Controller;
 use Auth;
-use App\Http\Requests\CreateHotelRequest;
-use App\Http\Requests\CreateImageRequest;
-use App\Http\Requests\EditHotelRequest;
-use App\Http\Requests\CreateRoomRequest;
-use App\Http\Requests\EditRoomRequest;
+use Turismo\Http\Requests\CreateHotelRequest;
+use Turismo\Http\Requests\CreateImageRequest;
+use Turismo\Http\Requests\EditHotelRequest;
+use Turismo\Http\Requests\CreateRoomRequest;
+use Turismo\Http\Requests\EditRoomRequest;
 use Illuminate\Support\Facades\Session;
 class HotelsController extends Controller
 {

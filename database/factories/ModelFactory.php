@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(Turismo\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -24,7 +24,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 
 
-$factory->define(App\hotel::class, function (Faker\Generator $faker) {
+$factory->define(Turismo\hotel::class, function (Faker\Generator $faker) {
     return [
         'name'  => $faker->name,
         'email' => $faker->email,
@@ -32,14 +32,15 @@ $factory->define(App\hotel::class, function (Faker\Generator $faker) {
         'phone' => $faker->PhoneNumber,
         'address'=>$faker->Address,
         'website'=>$faker->url,
-        'image'=>$faker->randomElement(['foto1.jpg','foto2.jpg','foto3.jpg','foto4.jpg']), 'user_id'=>rand(1,9),
+        'image'=>$faker->randomElement(['hotel.jpg','hotel.jpg']), 
+        'user_id'=>rand(1,9),
 
     ];
 });
 
 
 
-$factory->define(App\room::class, function (Faker\Generator $faker) {
+$factory->define(Turismo\room::class, function (Faker\Generator $faker) {
     return [
         'type'      => $faker->randomElement(['Cama Doble para parejas','Sencilla','','Con dos camas sencillas']),
         'numPerson' => rand(1,3),
@@ -48,13 +49,13 @@ $factory->define(App\room::class, function (Faker\Generator $faker) {
         'price'     => rand(25000,80000),
         'extra'     =>$faker->words(4, true),
         
-        'image'     =>$faker->randomElement(['foto1.jpg','foto2.jpg','foto3.jpg','foto4.jpg']),
+        'image'     =>$faker->randomElement(['foto1.jpg','foto1.jpg']),
         'hotel_id'  =>rand(1,9),
 
     ];
 });
 
-$factory->define(App\message::class, function (Faker\Generator $faker) {
+$factory->define(Turismo\message::class, function (Faker\Generator $faker) {
     return [
         'name'  => $faker->name,
         'email' => $faker->email,
@@ -66,7 +67,7 @@ $factory->define(App\message::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\hotel_user::class, function (Faker\Generator $faker) {
+$factory->define(Turismo\hotel_user::class, function (Faker\Generator $faker) {
     return [
         'user_id'   =>rand(1,9),
         'hotel_id'  =>rand(1,9),
@@ -74,7 +75,7 @@ $factory->define(App\hotel_user::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\comment::class, function (Faker\Generator $faker) {
+$factory->define(Turismo\comment::class, function (Faker\Generator $faker) {
     return [
         'user_id'   =>rand(1,9),
         'hotel_id'  =>rand(1,9),
